@@ -8,11 +8,51 @@ var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
 var moment = require('moment');
+var fs = require("fs");
 moment().format();
 let operation = process.argv[2];
 let input = process.argv[3];
 
 
+
+///////////////////// 
+// do-what-it-says //
+/////////////////////
+
+if(operation === 'do-what-it-says') {
+
+    fs.readFile("random.txt", "utf8", function(error, data) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+          return console.log(error);
+        }
+      
+        // Console log the data 
+        console.log(data);
+      
+        // Split the data by commas (to make it more readable)
+        var dataArr = data.split(",");
+      
+        // Set the new values for the operation and input variables and then call the eval function with the new params.
+
+         operation = dataArr[0];
+         input = dataArr[1];
+         evalOperation();
+      
+      });
+      
+}
+
+
+//Call evalOperation function in the case where the operation is not 'do-what-it-says'
+evalOperation();
+
+
+//I put the spotify-this, movie-this and concert-this operations inside a function called evalOperation so that I could 
+//first have it evaluate the do-what-it-says case and change the operation and input and then call the function to evaluate it.
+
+function evalOperation() {
 /////////////////////
 // Spotify Content //
 /////////////////////
@@ -109,10 +149,4 @@ if(operation === 'concert-this'){
         }
     )};
 
-///////////////////// 
-// do-what-it-says //
-/////////////////////
-
-if(operation === 'do-what-it-says') {
-    
-}
+};
