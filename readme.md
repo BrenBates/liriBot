@@ -1,4 +1,4 @@
-# Video of functionality: 
+# Video of Functionality: 
 https://drive.google.com/file/d/1NbJlMJTbTrCUC_6FsgRFy5PL5fa8FcpY/view?usp=sharing
 
 # Application Purpose: 
